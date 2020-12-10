@@ -1,3 +1,5 @@
+## leetcode
+https://leetcode-cn.com/problems/two-sum/solution/qian-duan-suan-fa-gong-gu-javascriptji-c-bt9v/
 ### 解题1、
 思路：
 + 两次遍历匹配 val1+val2 = target；
