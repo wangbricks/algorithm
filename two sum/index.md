@@ -83,5 +83,34 @@ var twoSum = function(nums, target){
 }
 ```
 
-资源：
-https://www.yuque.com/wanglei-enpro/kcpp9e/wzzhlr
+### 总结for循环、forEach、map
+
+for、forEach、map区别；
+#### for循环和forEach区别
++ for 可以使用break；跳出循环，优化性能；forEach报错；
++ for 函数内的for可以使用return；forEach无效；
++ for循环过程中支持修改索引（修改 i），但forEach做不到（底层控制index自增，我们无法左右它）
++ forEach 参数 arr.forEach(function(self,index,arr){ //this 执行obj },obj)
+
+#### map
++ arr.map( function(val,key,arr){},this )
++ 循环内部有能力改变原数组
++ map和forEach处理数组元素的范围是在callback第一次调用就已经确认了；
++ 比如数组的长度--数组新增加的数据是不会被遍历访问；
++ 但是map遍历数组的元素，是在map调用后，访问元素前才生效；如果在此期间删除元素，访问不到
+```
+var arr = [{name:1},{name:2}]
+var bee=arr.map( item=>{
+    arr.splice(0,arr.length);
+    return item
+} )
+// index=1的元素访问不到了；
+bee [{…}, empty]
+//但是扩展运算符可以解决这个问题
+var arr = [{name:1},{name:2}]
+// [...arr]生成一个新的数组；
+var bee=[...arr].map( item=>{
+    arr.splice(0,arr.length);
+    return item
+} )
+```
