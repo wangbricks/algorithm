@@ -9,7 +9,7 @@ https://leetcode-cn.com/problems/two-sum/solution/qian-duan-suan-fa-gong-gu-java
 + 定义多余的变量 result；
 + 匹配到两数之和等于目标值时，无法跳出循环；共遍历：Array.length * Array.length
 + 第二次索引值，获取繁琐 （y1+y2+1）;
-
++ 第一次循环，没必要循环最后一位;
 耗时：
 执行用时：124 ms, 在所有 JavaScript 提交中击败了47.42%的用户
 内存消耗：43.6 MB, 在所有 JavaScript 提交中击败了15.89%的用户
@@ -39,7 +39,7 @@ var twoSum = function(nums, target) {
 
 ```
 var twoSum = function (nums, target) {
-  for(let a = 0;a<nums.length;a++){
+  for(let a = 0;a<nums.length-1;a++){
       for(let b = a+1;b<nums.length;b++ ){
           if( nums[a] + nums[b]  === target){
               return [a,b]
@@ -94,6 +94,11 @@ for、forEach、map区别；
 + for循环过程中支持修改索引（修改 i），但forEach做不到（底层控制index自增，我们无法左右它）
 + forEach 参数 arr.forEach(function(self,index,arr){ //this 执行obj },obj)
 
+#### forEach
++ 如果非要跳出循环；
++ forEach是没有跳出循环逻辑的，但是强制跳出，只能在合理的跑出错误的情况下，终止运算，
++ try{ throw new Error() }catch(err){}
+
 #### map
 + arr.map( function(val,key,arr){},this )
 + 循环内部有能力改变原数组
@@ -116,3 +121,14 @@ var bee=[...arr].map( item=>{
     return item
 } )
 ```
+
+#### break
++ break语句会使运行的程序立刻退出包含在最内层的循环或者退出一个switch语句。
++ 由于它是用来退出循环或者switch语句的, 所以只有当它出现在这些语句的时候, 这种形式的break语句才是合法的。
+
+#### continue
++ continue语句和break语句相似。所不同的是，它不是退出一个循环，而是开始循环的一次新迭代。
++ continue语句只能用在while语句、do/while语句、for语句、或者for/in语句的循环体内, 在其他地方使用都会引起错误
++ 主要意思跳过当前，继续执行；
+
+[grey](https://leetcode-cn.com/problems/3sum/solution/three-sum-ti-jie-by-wonderful611/)
